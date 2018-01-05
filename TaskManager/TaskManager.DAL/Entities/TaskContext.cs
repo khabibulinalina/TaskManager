@@ -7,6 +7,7 @@ namespace TaskManager.DAL.Entities
 {
     public class TaskContext : DbContext
     {
+
         public DbSet<Employee> Employeers { get; set; }
         public DbSet<Task> Tasks { get; set; }
 

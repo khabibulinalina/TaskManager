@@ -1,0 +1,131 @@
+﻿body {
+}
+
+header {
+position: relative;
+height: 180px;
+margin-bottom: 25px;
+}
+
+.container {
+width: 1190px;
+}
+
+nav.navbar {
+position: absolute;
+bottom: 0;
+margin-bottom: 0;
+background: #782a2a;
+border-radius: 0;
+width: 100%;
+}
+
+nav.navbar a {
+color: white
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+background: #a54646;
+}
+
+.nav > li:hover ul {
+display: block;
+}
+
+.nav li ul a {
+color: black;
+}
+
+.task {
+width: 50%;
+margin: 0 auto;
+background: #cdcdcd;
+padding: 5px 15px;
+border-radius: 5px;
+box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.task h2 {
+margin-top: 10px;
+text-align: center;
+}
+
+.task input {
+width: 100%;
+}
+
+.task input.btn {
+padding: 7px 35px;
+width: auto;
+border-radius: 7px;
+background: brown;
+color: white;
+margin: 0 auto;
+display: block;
+}
+
+.task input.btn:hover {
+background: #a54646;
+}
+
+.task input.btn:active {
+background: #6b2323;
+}
+
+.task #priority {
+display: block;
+margin-bottom: 10px;
+padding: 4px 10px;
+}
+
+.task-list {
+background: #eaeaea;
+padding: 10px 20px;
+margin: 9px;
+width: 32%;
+display: inline-block;
+border-radius: 5px;
+}
+
+.task-list:nth-child(2) {
+margin-left: 0;
+}
+
+.task-list:last-child {
+margin-right: 0;
+}
+
+.task-list p:nth-child(0) {
+}
+
+.task-list p:nth-child(1) {
+float: left;
+width: 70%;
+padding-left: 0px;
+font-weight: 600;
+}
+
+.task-list p:nth-child(2) {
+text-align: right;
+}
+
+.task-new {
+display: block;
+text-align: right;
+margin-bottom: 10px;
+}
+
+footer {
+position: absolute;
+bottom: 0;
+display: block;
+width: 100%;
+border-top: 2px solid #782a2a;
+height: 50px;
+padding: 14px 0;
+}
+
+footer p {
+text-align: right;
+padding-right: 30px;
+}

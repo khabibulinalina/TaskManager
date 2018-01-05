@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@using TaskManager.BLL.DTO
+
+<meta charset="utf-8" />
+<div class="content">
+    <div class="task">
+        <h2>Заполнение карточки</h2>
+        <form method="post" action="/Tasks">
+            <p>
+                <label>Название:</label><br />
+                <input type="text" name="Title" />
+            </p>
+            <p>
+                <label>Описание:</label><br />
+                <input type="text" name="Description" />
+            </p>
+            <label>Приоритет:</label><br />
+            @Html.DropDownList("priority", Html.GetEnumSelectList(typeof(PriorityDTO)))
+
+            <label>Назначена на:</label><br />
+          
+            <input type="submit" value="Отправить" class="btn" />
+
+        </form>
+    </div>
+</div>

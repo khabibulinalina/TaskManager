@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@using TaskManager.BLL.DTO
+
+<meta charset="utf-8" />
+<h2>Текущие задачи</h2>
+
+<div class="content">
+    <a class="task-new" href="~/Task/Create">Cоздать карточку</a>
+    
+        @foreach (TaskDTO b in Model)
+        {
+            <div class="task-list">
+                <p>@b.Title</p>
+                <p>@b.Priority</p>
+                <p>@b.Employee.Name</p>
+                <p>@b.Descriprion</p>
+            </div>
+        }
+</div>
+
+

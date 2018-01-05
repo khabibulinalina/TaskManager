@@ -10,6 +10,8 @@ using TaskManager.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TaskManager.Models;
+using TaskManager.DAL.Interfaces;
+using TaskManager.BLL.Services;
 
 namespace TaskManager
 {
@@ -25,10 +27,16 @@ namespace TaskManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-        services.AddDbContext<TaskContext>(options => options.UseSqlServer(connection));
+            //string connection = Configuration.GetConnectionString("DefaultConnection");
+           // services.AddDbContext<TaskContext>(options => options.UseSqlServer(connection));
+           
+            string connection = "Server = HP\\SQLEXPRESS;Database=TaskManager;Trusted_Connection=True;MultipleActiveResultSets=true";
+            var taskRepository = new TaskRepository(connection);
+
+            services.AddTransient<IRepository<DAL.Entities.Task>, TaskRepository>(provider => taskRepository);
+            services.AddSingleton(provider => new TaskServices(taskRepository));
             services.AddMvc();
-        
+
         }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +58,7 @@ namespace TaskManager
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Task}/{action=Index}/{id?}");
             });
         }
     }
