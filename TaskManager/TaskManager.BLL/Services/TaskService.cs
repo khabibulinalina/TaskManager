@@ -6,6 +6,7 @@ using TaskManager.DAL.Entities;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.DAL.Interfaces;
+using TaskManager.BLL.Helpers;
 
 namespace TaskManager.BLL.Services
 {
@@ -19,6 +20,7 @@ namespace TaskManager.BLL.Services
         {
             repo = taskRepository;
         }
+       
 
         public IEnumerable<TaskDTO> GetAllTasks()
         {
@@ -28,17 +30,16 @@ namespace TaskManager.BLL.Services
         }
         
        
-        public void CreateTask(TaskDTO item)
+        public void CreateTask(TaskDTO task)
         {
-            throw new NotImplementedException();
+            repo.Create(task.Convert());
         }
 
         public void DeleteTask(TaskDTO item)
         {
             throw new NotImplementedException();
         }
-
-       
+             
 
         public TaskDTO GetTaskById(int id)
         {

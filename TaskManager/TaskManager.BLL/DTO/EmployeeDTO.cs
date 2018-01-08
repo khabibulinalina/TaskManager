@@ -14,6 +14,10 @@ namespace TaskManager.BLL.DTO
             DateOfBirthday = employee.DateOfBirthday;
             Position = (PositionsDTO)((int) employee.Position);
         }
+        public EmployeeDTO()
+        {
+
+        }
 
         public String Name { get; set; }
         public String Mail { get; set; }

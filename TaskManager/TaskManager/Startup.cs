@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using TaskManager.Models;
 using TaskManager.DAL.Interfaces;
 using TaskManager.BLL.Services;
+using TaskManager.DAL.Repositories;
 
 namespace TaskManager
 {
@@ -32,9 +33,14 @@ namespace TaskManager
            
             string connection = "Server = HP\\SQLEXPRESS;Database=TaskManager;Trusted_Connection=True;MultipleActiveResultSets=true";
             var taskRepository = new TaskRepository(connection);
+            var employeeRepository = new EmployeeRepository(connection);
 
             services.AddTransient<IRepository<DAL.Entities.Task>, TaskRepository>(provider => taskRepository);
+            services.AddTransient<IRepository<DAL.Entities.Employee>, EmployeeRepository>(provider => employeeRepository);
+
             services.AddSingleton(provider => new TaskServices(taskRepository));
+            services.AddSingleton(provider => new EmployeeService(employeeRepository));
+
             services.AddMvc();
 
         }

@@ -52,13 +52,9 @@ namespace TaskManager.DAL.Interfaces
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Tasks (Title, Description, EmployeeId, Priority) VALUES(@Title,@Description,@EmployeeId @Priority)";
+                var sqlQuery = "INSERT INTO Tasks (Title, Descriprion, Priority, Employee) VALUES(@Title,@Descriprion,@Priority, @Employee)";
                 db.Execute(sqlQuery, task);
 
-                // если мы хотим получить id добавленного пользователя
-                //var sqlQuery = "INSERT INTO Users (Name, Age) VALUES(@Name, @Age); SELECT CAST(SCOPE_IDENTITY() as int)";
-                //int? userId = db.Query<int>(sqlQuery, user).FirstOrDefault();
-                //user.Id = userId.Value;
             }
         }
 

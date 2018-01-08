@@ -7,7 +7,7 @@
 <div class="content">
     <div class="task">
         <h2>Заполнение карточки</h2>
-        <form method="post" action="/Tasks">
+        <form method="post">
             <p>
                 <label>Название:</label><br />
                 <input type="text" name="Title" />
@@ -20,7 +20,19 @@
             @Html.DropDownList("priority", Html.GetEnumSelectList(typeof(PriorityDTO)))
 
             <label>Назначена на:</label><br />
-          
+            
+            @*<select name="employee" class="selectpicker">
+                @foreach (EmployeeDTO b in Model)
+                {
+                    <option>@b.Name</option>
+                }
+            </select>*@
+            @*<select 
+                    class="form-control"
+                    asp-items="@(new SelectList(@ViewBag.temp,"Name"))"></select>*@
+                      
+            <select name="empl" asp-items="ViewBag.Temp"></select>
+
             <input type="submit" value="Отправить" class="btn" />
 
         </form>

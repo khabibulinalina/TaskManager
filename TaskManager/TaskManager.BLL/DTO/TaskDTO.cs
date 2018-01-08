@@ -15,6 +15,10 @@ namespace TaskManager.BLL.DTO
         Priority = (PriorityDTO)((int) task.Priority);
         Employee = new EmployeeDTO(task.Employee);
         }
+        public TaskDTO()
+        {
+
+        }
 
         public String Title { get; set; }
         public String Descriprion { get; set; }
