@@ -79,7 +79,7 @@ namespace TaskManager
             {  // Получаем экземпляр ApplcationDbContext из ServiceProvider-а
                 var context = serviceScope.ServiceProvider.GetService<ApplicationContext>();
                 // Применяем непримененные миграции
-                context.Database.Migrate();
+               // context.Database.Migrate();
                 // Получаем RoleManager
                 var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
                 // Проверяем, есть ли роль Admins. Если нет - добавляем.
@@ -105,7 +105,7 @@ namespace TaskManager
                         UserName = "admin@tusur.com",
                         Email = "admin@tusur.com"
                     }, "AdminPass123!").Result;
-                    admin = userManager.FindByNameAsync("admin@csdevents.com").Result;
+                    admin = userManager.FindByNameAsync("admin@tusur.com").Result;
                     // И добавляем ему роль Admins
                     userManager.AddToRoleAsync(admin, "Admins").Wait();
                 }

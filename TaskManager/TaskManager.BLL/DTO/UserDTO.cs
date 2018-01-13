@@ -15,7 +15,7 @@ namespace TaskManager.BLL.DTO
             PhoneNumber = user.PhoneNumber;
             Email = user.Email;
             Position = (PositionsDTO)((int)user.Position);
-
+           
         }
         public UserDTO()
         {
