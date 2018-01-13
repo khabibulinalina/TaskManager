@@ -10,6 +10,7 @@ using TaskManager.BLL.Services;
 using TaskManager.BLL.DTO;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TaskManager.DAL.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TaskManager.Controllers
 {
@@ -32,6 +33,7 @@ namespace TaskManager.Controllers
             return View(_taskService.GetAllTasks());
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {

@@ -9,11 +9,11 @@ namespace TaskManager.BLL.DTO
    public class RegisterDTO
     {
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name = "Имя")]
         public string Name { get; set; }
 
         [Required]
-        [Display(Name = "PhoneNumber")]
+        [Display(Name = "Номер телефона")]
         public string PhoneNumber { get; set; }
 
         [Required]
@@ -21,7 +21,7 @@ namespace TaskManager.BLL.DTO
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Positions")]
+        [Display(Name = "Должность")]
         public Positions Position { get; set; }
 
         [Required]

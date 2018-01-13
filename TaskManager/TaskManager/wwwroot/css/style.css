@@ -1,10 +1,11 @@
 ﻿body {
+background: #fcfcfc5e
 }
 
 header {
 position: relative;
 height: 90px;
-margin-bottom: 25px;
+margin-bottom: 10px;
 padding-top: 25px;
 font-size: 16px;
 border-bottom: 2px solid #2b3158;
@@ -46,11 +47,11 @@ margin-right: 10px;
 
 .task {
 width: 50%;
-margin: 0 auto;
-background: #cdcdcd;
+margin: 20px auto;
+background: #cdcdcd82;
 padding: 5px 15px;
-border-radius: 5px;
-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+border-radius: 3px;
+box-shadow: 0 0 2px rgba(0,0,0,0.5);
 }
 
 .task h2 {
@@ -62,26 +63,27 @@ text-align: center;
 width: 100%;
 }
 
-.task input.btn {
+input.btn {
 padding: 7px 35px;
-width: auto;
-border-radius: 7px;
-background: brown;
+width: auto !important;
+border-radius: 3px;
+background: #4772bd;
 color: white;
 margin: 0 auto;
 display: block;
+min-width: 130px;
 }
 
-.task input.btn:hover {
-    background: #a54646;
+.btn:hover {
+background: #337ab7bd;
+color: white;
 }
 
-.task input.btn:active {
-    background: #6b2323;
+.btn:active {
+background: #6b2323;
 }
 
 .task #priority {
-display: block;
 margin-bottom: 10px;
 padding: 4px 10px;
 }
@@ -146,4 +148,41 @@ border: 1px solid red !important;
 
 .task span.field-validation-error {
 color: #f90202
+}
+
+.task input, .task select {
+border-width: 1px;
+padding: 5px 10px;
+margin: 2px 0 5px;
+}
+
+.task select {
+width: 100%;
+}
+
+.task .btn {
+margin: 5px auto;
+}
+
+.form-base {
+margin: 20px 0;
+}
+
+.form-base input, .form-base select {
+width: 35%;
+border-width: 1px;
+padding: 5px 10px;
+margin: 5px 0 10px;
+}
+
+.form-base input:focus {
+}
+
+.form-base label, .task label {
+font-weight: normal;
+}
+
+.form-base.login div:nth-child(3) input {
+width: auto;
+margin-left: 10px;
 }

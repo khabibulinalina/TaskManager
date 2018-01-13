@@ -11,7 +11,7 @@
 
     <div class="task">
         <h2>Заполнение карточки</h2>
-        <form method="post" asp-antiforgery="true" asp-action="Create" asp-controller="Task" >
+        <form method="post" asp-antiforgery="true" asp-action="Create" asp-controller="Task"  >
             <p  asp-validation-summary="ModelOnly">
                 <label asp-for="Title">Название:</label><br />
                 <input type="text" name="Title" asp-for="Title" />

@@ -1,10 +1,10 @@
 ﻿
 @model TaskManager.BLL.DTO.LoginViewModel
 
-<h2>Мы вас не узнли, введите данные</h2>
+<h2>Мы вас не узнали, введите данные</h2>
 
 <form method="post" asp-controller="User" asp-action="Login"
-            asp-route-returnUrl="@Model.ReturnUrl">
+            asp-route-returnUrl="@Model.ReturnUrl" class="form-base login" >
     <div asp-validation-summary="ModelOnly"></div>
     <div>
         <label asp-for="Email"></label><br />
@@ -17,10 +17,10 @@
         <span asp-validation-for="Password"></span>
     </div>
     <div>
-        <label asp-for="RememberMe"></label><br />
+        <label asp-for="RememberMe"></label>
         <input asp-for="RememberMe" />
     </div>
     <div>
-        <input type="submit" value="Войти" />
+        <input type="submit" value="Войти" class="btn"/>
     </div>
 </form>

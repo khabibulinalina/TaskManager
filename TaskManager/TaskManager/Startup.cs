@@ -29,10 +29,10 @@ namespace TaskManager
         {
 
             string connection = "Server = HP\\SQLEXPRESS;Database=TaskManager;Trusted_Connection=True;MultipleActiveResultSets=true";
-            
+
             services.AddTransient<IRepository<DAL.Entities.Task>, TaskRepository>(provider => new TaskRepository(connection));
             services.AddTransient<IRepository<DAL.Entities.User>, UserRepository>(provider => new UserRepository(connection));
-            
+
             services.AddTransient<TaskServices>();
             services.AddTransient<UserService>();
 
@@ -50,8 +50,8 @@ namespace TaskManager
 
         }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -72,6 +72,44 @@ namespace TaskManager
                     name: "default",
                     template: "{controller=Task}/{action=Index}/{id?}");
             });
+
+            using (var serviceScope = app.ApplicationServices  // Создаем Service Scope для инициализации всех сервисов
+                   .GetRequiredService<IServiceScopeFactory>()
+                   .CreateScope())
+            {  // Получаем экземпляр ApplcationDbContext из ServiceProvider-а
+                var context = serviceScope.ServiceProvider.GetService<ApplicationContext>();
+                // Применяем непримененные миграции
+                context.Database.Migrate();
+                // Получаем RoleManager
+                var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
+                // Проверяем, есть ли роль Admins. Если нет - добавляем.
+                var admins = roleManager.FindByNameAsync("Admins").Result;
+                if (admins == null)
+                {
+                    var roleResult = roleManager.CreateAsync(new IdentityRole("Admins")).Result;
+                }
+                var users = roleManager.FindByNameAsync("Users").Result;
+                if (users == null)
+                {
+                    var roleResult = roleManager.CreateAsync(new IdentityRole("Users")).Result;
+                }
+                // Получаем UserManager
+                var userManager =
+               serviceScope.ServiceProvider.GetService<UserManager<User>>();
+                // Проверяем, есть ли пользователь
+                var admin = userManager.FindByNameAsync("admin@tusur.com").Result;
+                if (admin == null)
+                {                  // Если нет - создаем
+                    var userResult = userManager.CreateAsync(new User
+                    {
+                        UserName = "admin@tusur.com",
+                        Email = "admin@tusur.com"
+                    }, "AdminPass123!").Result;
+                    admin = userManager.FindByNameAsync("admin@csdevents.com").Result;
+                    // И добавляем ему роль Admins
+                    userManager.AddToRoleAsync(admin, "Admins").Wait();
+                }
+            }
         }
     }
 }
