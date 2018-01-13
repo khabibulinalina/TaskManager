@@ -1,16 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
+
+@model TaskManager.BLL.DTO.TaskDTO
+
 @using TaskManager.BLL.DTO
 
 <meta charset="utf-8" />
 <div class="content">
+
     <div class="task">
         <h2>Заполнение карточки</h2>
-        <form method="post">
-            <p>
-                <label>Название:</label><br />
-                <input type="text" name="Title" />
+        <form method="post" asp-antiforgery="true" asp-action="Create" asp-controller="Task" >
+            <p  asp-validation-summary="ModelOnly">
+                <label asp-for="Title">Название:</label><br />
+                <input type="text" name="Title" asp-for="Title" />
+                <span asp-validation-for="Title"></span>
             </p>
             <p>
                 <label>Описание:</label><br />
@@ -20,17 +25,17 @@
             @Html.DropDownList("priority", Html.GetEnumSelectList(typeof(PriorityDTO)))
 
             <label>Назначена на:</label><br />
-            
+
             @*<select name="employee" class="selectpicker">
-                @foreach (EmployeeDTO b in Model)
-                {
-                    <option>@b.Name</option>
-                }
-            </select>*@
-            @*<select 
-                    class="form-control"
-                    asp-items="@(new SelectList(@ViewBag.temp,"Name"))"></select>*@
-                      
+                    @foreach (EmployeeDTO b in Model)
+                    {
+                        <option>@b.Name</option>
+                    }
+                </select>*@
+            @*<select
+                class="form-control"
+                asp-items="@(new SelectList(@ViewBag.temp,"Name"))"></select>*@
+
             <select name="empl" asp-items="ViewBag.Temp"></select>
 
             <input type="submit" value="Отправить" class="btn" />

@@ -12,8 +12,7 @@ using Microsoft.Extensions.Logging;
 using TaskManager.Models;
 using TaskManager.DAL.Interfaces;
 using TaskManager.BLL.Services;
-using TaskManager.DAL.Repositories;
-
+using Microsoft.AspNetCore.Identity;
 namespace TaskManager
 {
     public class Startup
@@ -28,18 +27,24 @@ namespace TaskManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //string connection = Configuration.GetConnectionString("DefaultConnection");
-           // services.AddDbContext<TaskContext>(options => options.UseSqlServer(connection));
-           
+
             string connection = "Server = HP\\SQLEXPRESS;Database=TaskManager;Trusted_Connection=True;MultipleActiveResultSets=true";
-            var taskRepository = new TaskRepository(connection);
-            var employeeRepository = new EmployeeRepository(connection);
+            
+            services.AddTransient<IRepository<DAL.Entities.Task>, TaskRepository>(provider => new TaskRepository(connection));
+            services.AddTransient<IRepository<DAL.Entities.User>, UserRepository>(provider => new UserRepository(connection));
+            
+            services.AddTransient<TaskServices>();
+            services.AddTransient<UserService>();
 
-            services.AddTransient<IRepository<DAL.Entities.Task>, TaskRepository>(provider => taskRepository);
-            services.AddTransient<IRepository<DAL.Entities.Employee>, EmployeeRepository>(provider => employeeRepository);
+            //services.AddSingleton(provider => new TaskServices(taskRepository));
+            //services.AddSingleton(provider => new UserService(userRepository));
 
-            services.AddSingleton(provider => new TaskServices(taskRepository));
-            services.AddSingleton(provider => new EmployeeService(employeeRepository));
+
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(connection));
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationContext>();
 
             services.AddMvc();
 
@@ -59,6 +64,7 @@ namespace TaskManager
             }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

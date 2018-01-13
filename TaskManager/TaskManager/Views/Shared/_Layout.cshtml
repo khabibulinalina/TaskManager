@@ -8,7 +8,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         @*<link rel="stylesheet" href="~/css/site.css" />*@
-        <link rel="stylesheet" href="~/css/style.css"/>
+        <link rel="stylesheet" href="~/css/style.css?v=@DateTime.Now.Millisecond"/>
 
     </environment>
     <environment exclude="Development">
@@ -20,19 +20,28 @@
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <div class="container">
-                 <ul class="nav navbar-nav">
-                        <li><a asp-area="" asp-controller="Task" asp-action="Index">Карточки</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="~/Task/Create">Cоздать карточку</a></li>
-                            </ul>
-                        </li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    </ul>
-                </div>
-          </nav>
+        <div class="container">
+            <div class="menu-container">
+                <a asp-area="" asp-controller="Task" asp-action="Index">Доска карточек</a>
+            </div>
+            <div class="login-container">
+                @if (User.Identity.IsAuthenticated)
+            {
+                    <p>@User.Identity.Name</p>
+
+                    <form method="post" asp-controller="User" asp-action="LogOff">
+                        <input type="submit" value="Выход" />
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="User" asp-action="Login">Вход</a>
+                    <a asp-controller="User" asp-action="Register">Регистрация</a>
+                }
+            </div>
+            
+        </div>
+      
     </header>
     <div class="container body-content">
         @RenderBody()
@@ -59,6 +68,21 @@
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Development">
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
+                asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"
+                asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive">
+        </script>
     </environment>
 
     @RenderSection("Scripts", required: false)

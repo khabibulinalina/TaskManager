@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTO\EmployeeDTO.cs" />
+    <Compile Remove="DTO\Register.cs" />
+    <Compile Remove="Helpers\UserExtensions.cs" />
+    <Compile Remove="Services\EmployeeService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
   </ItemGroup>
 

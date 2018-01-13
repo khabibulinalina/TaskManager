@@ -15,18 +15,31 @@ namespace TaskManager.BLL.Helpers
                 Title = task.Title,
                 Descriprion = task.Descriprion,
                 Priority = (Priority)((int)task.Priority),
-                Employee = task.Employee.Convert()
+                User = task.User.Convert()
             };
         }
-        public static Employee Convert(this EmployeeDTO employee)
+        public static User Convert(this UserDTO user)
         {
-            return new Employee
+            return new User
             {
-                Name = employee.Name,
-                DateOfBirthday = employee.DateOfBirthday,
-                Mail = employee.Mail,
-                Position = (Positions)((int)employee.Position)
+                UserName = user.UserName,
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+                Position = (Positions)((int)user.Position),
+                                
             };
         }
+        public static User Convert(this RegisterDTO user)
+        {
+            return new User
+            {
+                UserName = user.Name,
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+                Position = user.Position,
+                
+            };
+        }
+
     }
 }

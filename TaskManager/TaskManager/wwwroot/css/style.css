@@ -3,37 +3,45 @@
 
 header {
 position: relative;
-height: 180px;
+height: 90px;
 margin-bottom: 25px;
+padding-top: 25px;
+font-size: 16px;
+border-bottom: 2px solid #2b3158;
+}
+
+body a {
+color: #111b8c
+}
+
+a:hover {
+text-decoration: none;
+color: #111b8cab;
 }
 
 .container {
 width: 1190px;
 }
 
-nav.navbar {
-position: absolute;
-bottom: 0;
-margin-bottom: 0;
-background: #782a2a;
-border-radius: 0;
-width: 100%;
+.menu-container {
+display: inline-block
 }
 
-nav.navbar a {
-color: white
+h1 {
+font-size: 20px;
 }
 
-.nav > li > a:hover, .nav > li > a:focus {
-background: #a54646;
+h2 {
+font-size: 18px;
 }
 
-.nav > li:hover ul {
-display: block;
+.login-container {
+display: inline-block;
+float: right;
 }
 
-.nav li ul a {
-color: black;
+.login-container a {
+margin-right: 10px;
 }
 
 .task {
@@ -65,11 +73,11 @@ display: block;
 }
 
 .task input.btn:hover {
-background: #a54646;
+    background: #a54646;
 }
 
 .task input.btn:active {
-background: #6b2323;
+    background: #6b2323;
 }
 
 .task #priority {
@@ -113,6 +121,7 @@ text-align: right;
 display: block;
 text-align: right;
 margin-bottom: 10px;
+font-size: 16px;
 }
 
 footer {
@@ -120,7 +129,7 @@ position: absolute;
 bottom: 0;
 display: block;
 width: 100%;
-border-top: 2px solid #782a2a;
+border-top: 2px solid #2b3158;
 height: 50px;
 padding: 14px 0;
 }
@@ -128,4 +137,13 @@ padding: 14px 0;
 footer p {
 text-align: right;
 padding-right: 30px;
+}
+
+
+.task input.input-validation-error {
+border: 1px solid red !important;
+}
+
+.task span.field-validation-error {
+color: #f90202
 }

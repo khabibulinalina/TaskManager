@@ -9,6 +9,7 @@ using TaskManager.BLL;
 using TaskManager.BLL.Services;
 using TaskManager.BLL.DTO;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using TaskManager.DAL.Entities;
 
 namespace TaskManager.Controllers
 {
@@ -16,12 +17,12 @@ namespace TaskManager.Controllers
 
     {
         TaskServices _taskService;
-        EmployeeService _employeeService;
+        UserService _userService;
 
-        public TaskController(TaskServices taskServices, EmployeeService employeeService)
+        public TaskController(TaskServices taskServices, UserService userService )
         {
             _taskService = taskServices;
-            _employeeService = employeeService;
+            _userService = userService;
             
         }
 
@@ -30,25 +31,33 @@ namespace TaskManager.Controllers
             
             return View(_taskService.GetAllTasks());
         }
+
         [HttpGet]
         public IActionResult Create()
         {
-           var temp = _employeeService.GetAllEmployee();
-
-            var sl = new SelectList(temp, "Id", "Name");
-            ViewBag.Temp = sl;
+           var temp = _userService.GetAllUser();
+            
+           var sl = new SelectList(temp, "Id", "UserName");
+           ViewBag.Temp = sl;
 
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(string title, string description, PriorityDTO priority, EmployeeDTO empl)
+        public IActionResult Create(string title, string description, PriorityDTO priority, UserDTO user)
         {
                   
-           var task = new TaskDTO{ Title= title, Descriprion = description, Priority = priority, Employee = empl};
-           _taskService.CreateTask(task);
+           var task = new TaskDTO { Title = title, Descriprion = description, Priority = priority, User = user };
+
+            if (ModelState.IsValid)
+            {
+                _taskService.CreateTask(task);
+                return RedirectToAction("Index");
+            }
+            else
+                return View(task);
            
-            return RedirectToAction("Index");
+             
         }
 
         public IActionResult About()

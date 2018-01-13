@@ -30,11 +30,11 @@ namespace TaskManager.DAL.Interfaces
             using (IDbConnection db = new SqlConnection(connectionString))
             
             {
-                var sql = "SELECT * FROM Tasks t join Employeers e on t.EmployeeId = e.Id";
+               var sql = "SELECT * FROM Tasks t join AspNetUsers e on t.UserId = e.Id";
 
-                var data = db.Query<Task, Employee, Task>(sql, (task, employee) => { task.Employee = employee; return task; });
+               var data = db.Query<Task, User, Task>(sql, (task, user) => { task.User = user; return task; });
 
-                return data;
+               return data;
                 //return db.Query("SELECT * FROM Tasks t join Employeers e on t.EmployeeId = e.Id", (t,e) => { var nt = (Task)t; t.Employee = e; return e; }).ToList();
 
             }
@@ -52,7 +52,7 @@ namespace TaskManager.DAL.Interfaces
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Tasks (Title, Descriprion, Priority, Employee) VALUES(@Title,@Descriprion,@Priority, @Employee)";
+                var sqlQuery = "INSERT INTO Tasks (Title, Descriprion, Priority, User) VALUES(@Title,@Descriprion,@Priority, @User)";
                 db.Execute(sqlQuery, task);
 
             }

@@ -10,26 +10,26 @@ using TaskManager.BLL.Helpers;
 
 namespace TaskManager.BLL.Services
 {
-    public class EmployeeService
-    {
+   // public class EmployeeService
+   // {
 
-        private IRepository<Employee> repo;
-
-
-        public EmployeeService(IRepository<Employee> employeeRepository)
-        {
-            repo = employeeRepository;
-        }
+   //     private IRepository<Employee> repo;
 
 
-        public IEnumerable<EmployeeDTO> GetAllEmployee()
-        {
-            var temp = repo.GetAll();
+   //     public EmployeeService(IRepository<Employee> employeeRepository)
+   //     {
+   //         repo = employeeRepository;
+   //     }
 
-            return temp.Select(t => new EmployeeDTO(t));
-        }
+
+   //     public IEnumerable<EmployeeDTO> GetAllEmployee()
+   //     {
+   //         var temp = repo.GetAll();
+
+   //         return temp.Select(t => new EmployeeDTO(t));
+   //     }
 
 
        
-   }
+   //}
 }
