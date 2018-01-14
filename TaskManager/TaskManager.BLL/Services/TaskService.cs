@@ -28,8 +28,14 @@ namespace TaskManager.BLL.Services
             
             return temp.Select(t => new TaskDTO(t));
         }
-        
-       
+
+        public IEnumerable<TaskDTO> GetTaskByName(string name)
+        {
+            var temp =repo.GetAll().Where(t => t.Title.ToLowerInvariant().Contains(name.ToLowerInvariant()));
+            return temp.Select(t => new TaskDTO(t));
+              
+        }
+
         public void CreateTask(TaskDTO task)
         {
             repo.Create(task.Convert());
@@ -52,5 +58,7 @@ namespace TaskManager.BLL.Services
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

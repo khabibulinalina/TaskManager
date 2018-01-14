@@ -58,23 +58,21 @@ namespace TaskManager.Controllers
             }
             else
                 return View(task);
-           
              
         }
-
-        public IActionResult About()
+        [HttpGet]
+        public ActionResult Search()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
-        public IActionResult Contact()
+        
+        public ActionResult TaskSearch(string name)
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            var tasks = _taskService.GetTaskByName(name);
+                return PartialView(tasks);
         }
+
 
         public IActionResult Error()
         {

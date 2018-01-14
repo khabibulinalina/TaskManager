@@ -39,6 +39,7 @@ namespace TaskManager.DAL.Interfaces
 
             }
         }
+       
 
         public Task Get(int id)
         {
@@ -75,5 +76,7 @@ namespace TaskManager.DAL.Interfaces
                 db.Execute(sqlQuery, new { id });
             }
         }
+
+      
     }
 }

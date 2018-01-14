@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "TaskSearch";
+}
+
+@model IEnumerable<TaskManager.BLL.DTO.TaskDTO>
+
+<div id="searchresults">
+    <h3>Все таски по поиску: </h3>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Title</li>
+        }
+    </ul>
+</div>

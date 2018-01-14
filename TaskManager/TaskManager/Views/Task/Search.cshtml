@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Search";
+}
+
+
+<h2>
+    Введите название карточки
+</h2>
+
+<input type="text" name="name" id="search" />
+<input type='button' id="submit" value='Поиск' />
+
+<div id="results"></div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>  
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#submit').click(function (e) {
+            e.preventDefault();
+            var name = $('#search').val();
+            name=encodeURIComponent(name);
+            $('#results').load('@Url.Action("TaskSearch", "Task")?name='+name)
+        });
+    });
+</script>
