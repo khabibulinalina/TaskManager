@@ -2,14 +2,48 @@
     ViewData["Title"] = "Index";
 }
 
-@model TaskManager.BLL.DTO.TaskDTO
+@model TaskManager.BLL.DTO.CreateTaskViewModel
 
 @using TaskManager.BLL.DTO
 
 <meta charset="utf-8" />
 <div class="content">
-
     <div class="task">
+        <h2>Заполнение карточки</h2>
+        <form method="post" asp-antiforgery="true" asp-action="Create" asp-controller="Task"  >
+            
+            <p>
+                <label>Название:</label><br />
+                @Html.TextBoxFor(m => m.TaskDTO.Title)
+            </p> 
+            <p>
+                <label>Опсиание:</label><br />
+                @Html.TextBoxFor(m => m.TaskDTO.Descriprion)
+            </p>
+            <p>
+                <label>Приоритет:</label><br />
+                @Html.DropDownListFor(m => m.TaskDTO.Priority, Html.GetEnumSelectList(typeof(PriorityDTO)))
+            </p>
+            <p>
+                <label>Назначен на:</label><br />
+                @Html.DropDownListFor(m => m.TaskDTO.User.Id, Model.ListEmployee)
+            </p>
+            
+            <input type="submit" value="Отправить" class="btn" />
+
+        </form>
+    </div>
+</div>
+    
+    @*@Html.TextBoxFor(m => m.TaskDTO.Title)
+
+    @Html.TextBoxFor(m => m.TaskDTO.Descriprion)
+        
+    @Html.DropDownListFor(m => m.TaskDTO.User, Model.ListEmployee)*@
+        
+@*Html.GetEnumSelectList(typeof(PriorityDTO))*@
+
+    @*<div class="task">
         <h2>Заполнение карточки</h2>
         <form method="post" asp-antiforgery="true" asp-action="Create" asp-controller="Task"  >
             <p  asp-validation-summary="ModelOnly">
@@ -23,6 +57,8 @@
             </p>
             <label>Приоритет:</label><br />
             @Html.DropDownList("priority", Html.GetEnumSelectList(typeof(PriorityDTO)))
+            
+
 
             <label>Назначена на:</label><br />
 
@@ -36,10 +72,9 @@
                 class="form-control"
                 asp-items="@(new SelectList(@ViewBag.temp,"Name"))"></select>*@
 
-            <select name="empl" asp-items="ViewBag.Temp"></select>
+            @*<select name="empl" asp-items="ViewBag.Temp"></select>
 
             <input type="submit" value="Отправить" class="btn" />
 
         </form>
-    </div>
-</div>
+    </div>*@

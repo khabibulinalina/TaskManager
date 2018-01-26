@@ -33,32 +33,43 @@ namespace TaskManager.Controllers
             return View(_taskService.GetAllTasks());
         }
 
-        [Authorize]
+
         [HttpGet]
         public IActionResult Create()
         {
-           var temp = _userService.GetAllUser();
-            
-           var sl = new SelectList(temp, "Id", "UserName");
-           ViewBag.Temp = sl;
+          var model = new CreateTaskViewModel();
+          SetupRegisterViewModel(model);
 
-            return View();
+            return View(model);
+        }
+        private void SetupRegisterViewModel(CreateTaskViewModel model)
+        {
+             model.ListEmployee = _userService.GetAllUser()
+                .Select(e => new SelectListItem {Selected = false, Text = e.UserName, Value = e.Id});
         }
 
         [HttpPost]
-        public IActionResult Create(string title, string description, PriorityDTO priority, UserDTO user)
+        public IActionResult Create(CreateTaskViewModel model)
         {
-                  
-           var task = new TaskDTO { Title = title, Descriprion = description, Priority = priority, User = user };
+                if (ModelState.IsValid)
+                {
+                    Console.WriteLine(model);
+                    // save model.Form
+                    return RedirectToAction("Index");
+                }
+                 
+                return View(model);
 
-            if (ModelState.IsValid)
-            {
-                _taskService.CreateTask(task);
-                return RedirectToAction("Index");
-            }
-            else
-                return View(task);
-             
+           //var task = new TaskDTO { Title = title, Descriprion = description, Priority = priority };
+
+            // if (ModelState.IsValid)
+            // {
+            //     _taskService.CreateTask(task);
+            //     return RedirectToAction("Index");
+            // }
+            // else
+            //     return View(task);
+
         }
         [HttpGet]
         public ActionResult Search()

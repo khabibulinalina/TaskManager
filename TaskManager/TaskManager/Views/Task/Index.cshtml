@@ -13,10 +13,9 @@
 <div class="content">
     
 
-        @if (User.IsInRole("Admins"))
-        {
+       
             <a class="task-new" href="~/Task/Create">Cоздать карточку</a>
-        }
+        
 
         @foreach (TaskDTO b in Model)
         {
