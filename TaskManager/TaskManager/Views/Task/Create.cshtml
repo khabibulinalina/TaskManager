@@ -8,7 +8,7 @@
 
 <meta charset="utf-8" />
 <div class="content">
-    <div class="task">
+    <div class="task create">
         <h2>Заполнение карточки</h2>
         <form method="post" asp-antiforgery="true" asp-action="Create" asp-controller="Task"  >
             
@@ -26,7 +26,7 @@
             </p>
             <p>
                 <label>Назначен на:</label><br />
-                @Html.DropDownListFor(m => m.TaskDTO.User.Id, Model.ListEmployee)
+                @Html.DropDownListFor(m => m.SelectedUser, Model.ListEmployee)
             </p>
             
             <input type="submit" value="Отправить" class="btn" />

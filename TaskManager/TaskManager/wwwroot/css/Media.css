@@ -1,0 +1,36 @@
+﻿
+@media screen and (max-width:1200px) {
+
+    .container {
+        width: auto;
+    }
+}
+
+@media screen and (max-width:1055px) {
+    .container {
+        min-width: 320px !important;
+        max-width: none !important;
+        margin: 0;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .task-list {
+        width: 49%;
+    }
+   
+}
+
+@media screen and (max-width: 670px) {
+    .task-list {
+        width: 100%;
+    }
+
+    .task.create {
+        width: 80%;
+    }
+    .form-base input, .form-base select{
+        width:100%
+    }
+}

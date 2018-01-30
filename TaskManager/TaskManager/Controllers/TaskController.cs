@@ -53,22 +53,17 @@ namespace TaskManager.Controllers
         {
                 if (ModelState.IsValid)
                 {
-                    Console.WriteLine(model);
+                    var task = new TaskDTO { Title = model.TaskDTO.Title, Descriprion = model.TaskDTO.Descriprion, Priority = model.TaskDTO.Priority, User = model.TaskDTO.User};
+
+                    _taskService.CreateTask(task);
+
+                Console.WriteLine(model);
                     // save model.Form
                     return RedirectToAction("Index");
                 }
                  
                 return View(model);
 
-           //var task = new TaskDTO { Title = title, Descriprion = description, Priority = priority };
-
-            // if (ModelState.IsValid)
-            // {
-            //     _taskService.CreateTask(task);
-            //     return RedirectToAction("Index");
-            // }
-            // else
-            //     return View(task);
 
         }
         [HttpGet]

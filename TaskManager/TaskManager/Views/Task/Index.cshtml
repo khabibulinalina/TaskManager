@@ -11,16 +11,12 @@
 
 
 <div class="content">
-    
-
-       
-            <a class="task-new" href="~/Task/Create">Cоздать карточку</a>
+    <a class="task-new" href="~/Task/Create">Cоздать карточку</a>
+    <div class="task-container">
         
-
+    
         @foreach (TaskDTO b in Model)
         {
-
-
             <div class="task-list">
                 <p>@b.Title</p>
                 <p>@b.Priority</p>
@@ -28,6 +24,7 @@
                 <p>@b.Descriprion</p>
             </div>
         }
+       </div>
 </div>
 
 
