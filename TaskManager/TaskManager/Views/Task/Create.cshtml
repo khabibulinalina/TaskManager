@@ -26,7 +26,7 @@
             </p>
             <p>
                 <label>Назначен на:</label><br />
-                @Html.DropDownListFor(m => m.SelectedUser, Model.ListEmployee)
+                @Html.DropDownListFor(m => m.TaskDTO.User.Id, Model.ListEmployee)
             </p>
             
             <input type="submit" value="Отправить" class="btn" />
