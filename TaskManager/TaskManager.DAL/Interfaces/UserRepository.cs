@@ -54,9 +54,12 @@ namespace TaskManager.DAL.Interfaces
             }
         }
 
-        User IRepository<User>.Get(int id)
+        public User Get(string id)
         {
-            throw new System.NotImplementedException();
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                return db.Query<User>("SELECT * FROM AspNetUsers WHERE Id = @id", new { id }).FirstOrDefault();
+            }
         }
 
         public void Delete(int id)

@@ -51,5 +51,10 @@ namespace TaskManager.BLL.Services
             return result;
         }
 
+        public UserDTO GetUserById(String id)
+        {
+            return repo.Get(id).Convert();
+        }
+
     }
 }

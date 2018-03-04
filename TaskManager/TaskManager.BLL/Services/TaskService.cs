@@ -47,9 +47,9 @@ namespace TaskManager.BLL.Services
         }
              
 
-        public TaskDTO GetTaskById(int id)
+        public TaskDTO GetTaskById(String id)
         {
-            throw new NotImplementedException();
+            return repo.Get(id).Convert();
         }
 
         

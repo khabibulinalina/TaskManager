@@ -17,7 +17,7 @@
                 @Html.TextBoxFor(m => m.TaskDTO.Title)
             </p> 
             <p>
-                <label>Опсиание:</label><br />
+                <label>Описание:</label><br />
                 @Html.TextBoxFor(m => m.TaskDTO.Descriprion)
             </p>
             <p>
@@ -26,7 +26,7 @@
             </p>
             <p>
                 <label>Назначен на:</label><br />
-                @Html.DropDownListFor(m => m.TaskDTO.User.Id, Model.ListEmployee)
+                @Html.DropDownListFor(m => m.TaskDTO.UserID, Model.ListEmployee)
             </p>
             
             <input type="submit" value="Отправить" class="btn" />

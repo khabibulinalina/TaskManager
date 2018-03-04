@@ -12,21 +12,44 @@ namespace TaskManager.BLL.Helpers
         {
             return new Task
             {
+                Id = task.Id,
                 Title = task.Title,
                 Descriprion = task.Descriprion,
                 Priority = (Priority)((int)task.Priority),
-                User = task.User.Convert()
+                UserId = task.UserID
+            };
+        }
+        public static TaskDTO Convert(this Task task)
+        {
+            return new TaskDTO
+            {
+                Id = task.Id,
+                Title = task.Title,
+                Descriprion = task.Descriprion,
+                Priority = (PriorityDTO)((int)task.Priority),
+                UserID = task.UserId
             };
         }
         public static User Convert(this UserDTO user)
         {
             return new User
-            {
+            {   Id = user.Id,
                 UserName = user.UserName,
                 PhoneNumber = user.PhoneNumber,
                 Email = user.Email,
-                Position = (Positions)((int)user.Position),
-                                
+                Position = (Positions)((int)user.Position)
+            };
+        }
+        public static UserDTO Convert(this User user)
+        {
+            return new UserDTO
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+                Position = (PositionsDTO)((int)user.Position),
+
             };
         }
         public static User Convert(this RegisterDTO user)

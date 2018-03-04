@@ -6,11 +6,18 @@
 @model IEnumerable<TaskManager.BLL.DTO.TaskDTO>
 
 <div id="searchresults">
-    <h3>Все таски по поиску: </h3>
-    <ul>
+    @if (Model.Count() == 0)
+    {
+        <h4>Карточки не найдены </h4>
+    }
+    else
+    {
+        <h4>Все карточки по поиску: </h4>
+
         @foreach (var item in Model)
         {
-            <li>@item.Title</li>
+            <a asp-controller="Task" asp-action="Details" asp-route-id="@item.Id"><p>@item.Title</p></a>
         }
-    </ul>
+    }
+
 </div>

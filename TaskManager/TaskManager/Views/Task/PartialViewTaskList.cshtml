@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "PartialViewTaskList";
+}
+@using TaskManager.BLL.DTO
+
+@model TaskManager.BLL.DTO.TaskViewModel
+
+<div class="task-box">
+    <a asp-action="Details" asp-controller="Task" asp-route-id="@Model.Id">
+        <div>
+            <p>@Model.Title</p>
+            <p>@Model.Priority</p>
+            <p>@Model.UserName</p>
+            <p>@Model.Descriprion</p>
+        </div>
+    </a>
+</div>

@@ -11,10 +11,11 @@ namespace TaskManager.BLL.DTO
     {
         public TaskDTO(Task task)
        {
+             Id = task.Id;
              Descriprion = task.Descriprion;
              Title = task.Title;
              Priority = (PriorityDTO)((int) task.Priority);
-             User = new UserDTO(task.User);
+             UserID = task.UserId;
         }
         public TaskDTO()
         {
@@ -25,7 +26,7 @@ namespace TaskManager.BLL.DTO
         public String Title { get; set; }
 
         public String Descriprion { get; set; }
-        public UserDTO User { get; set; }
+        public String UserID { get; set; }
         public PriorityDTO Priority { get; set; }
     }
 }

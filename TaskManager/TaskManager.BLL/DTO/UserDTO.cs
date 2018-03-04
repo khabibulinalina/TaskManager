@@ -11,6 +11,7 @@ namespace TaskManager.BLL.DTO
     {
         public UserDTO(User user)
         {
+            Id = user.Id;
             UserName = user.UserName;
             PhoneNumber = user.PhoneNumber;
             Email = user.Email;

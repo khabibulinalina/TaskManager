@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+}
+
+@using TaskManager.BLL.DTO
+@model TaskManager.BLL.DTO.TaskViewModel
+
+<div class="details">
+
+    <div class="col-md-9">
+        <H1>@Model.Title</H1>
+        <p class="description">@Model.Descriprion</p>
+    </div>
+    <div class="col-md-3">
+        <p class="priority">@Model.Priority</p>
+        <p class="username">@Model.UserName</p>
+    </div>
+
+    <a asp-action="Edit" asp-controller="Task" asp-route-id="@Model.Id">Редактировать</a>
+
+</div>

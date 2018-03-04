@@ -12,7 +12,7 @@ namespace TaskManager.DAL.Interfaces
     public interface IRepository<T> where T : class
     {
         IEnumerable<T> GetAll();
-        T Get(int id);
+        T Get(String id);
         void Create(T item);
         void Update(T item);
         void Delete(int id);
@@ -32,7 +32,7 @@ namespace TaskManager.DAL.Interfaces
             {
                var sql = "SELECT * FROM Tasks t join AspNetUsers e on t.UserId = e.Id";
 
-               var data = db.Query<Task, User, Task>(sql, (task, user) => { task.User = user; return task; });
+               var data = db.Query<Task, User, Task>(sql, (task, user) => { task.UserId = user.Id; return task; });
 
                return data;
                 //return db.Query("SELECT * FROM Tasks t join Employeers e on t.EmployeeId = e.Id", (t,e) => { var nt = (Task)t; t.Employee = e; return e; }).ToList();
@@ -41,7 +41,7 @@ namespace TaskManager.DAL.Interfaces
         }
        
 
-        public Task Get(int id)
+        public Task Get(String id)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -53,7 +53,7 @@ namespace TaskManager.DAL.Interfaces
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Tasks (Title, Descriprion, Priority, User) VALUES(@Title,@Descriprion,@Priority, @User)";
+                var sqlQuery = "INSERT INTO Tasks (Title, Descriprion, Priority, UserId) VALUES(@Title,@Descriprion,@Priority, @UserId)";
                 db.Execute(sqlQuery, task);
 
             }

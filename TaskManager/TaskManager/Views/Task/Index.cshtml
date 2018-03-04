@@ -3,28 +3,31 @@
 }
 @using TaskManager.BLL.DTO
 
+@model IEnumerable<TaskManager.BLL.DTO.TaskViewModel>
 <meta charset="utf-8" />
-
 @*<p>IsInRole "Admins" ?</p>@User.IsInRole("Admins")*@
-
 <h2>Текущие задачи</h2>
-
 
 <div class="content">
     <a class="task-new" href="~/Task/Create">Cоздать карточку</a>
     <div class="task-container">
-        
-    
-        @foreach (TaskDTO b in Model)
+        <div class="filter">
+            @*@Html.DropDownListFor(m => m.TaskDTO.Priority, Html.GetEnumSelectList(typeof(PriorityDTO)))*@
+        </div>
+
+        @foreach (TaskViewModel b in Model)
         {
-            <div class="task-list">
-                <p>@b.Title</p>
-                <p>@b.Priority</p>
-                <p>@b.User.UserName</p>
-                <p>@b.Descriprion</p>
+            <div class="task-box">
+                <a asp-action="Details" asp-controller="Task" asp-route-id="@b.Id">
+                    <div>
+                        <p>@b.Title</p>
+                        <p>@b.Priority</p>
+                        <p>@b.UserName</p>
+                        <p>@b.Descriprion</p>
+                    </div>
+                </a>
             </div>
         }
-       </div>
+    </div>
 </div>
-
 

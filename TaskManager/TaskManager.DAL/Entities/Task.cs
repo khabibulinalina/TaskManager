@@ -11,7 +11,7 @@ namespace TaskManager.DAL.Entities
         public String Title { get; set; }
 
         public String Descriprion { get; set; }
-        public User User { get; set; }
+        public String UserId { get; set; }
         public Priority Priority { get; set; }
     }
 }

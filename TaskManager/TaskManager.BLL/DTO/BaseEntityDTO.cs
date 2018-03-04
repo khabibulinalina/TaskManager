@@ -6,6 +6,6 @@ namespace TaskManager.BLL.DTO
 {
     public class BaseEntityDTO
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
     }
 }

@@ -21,7 +21,7 @@
             e.preventDefault();
             var name = $('#search').val();
             name=encodeURIComponent(name);
-            $('#results').load('@Url.Action("TaskSearch", "Task")?name='+name)
+            $('#results').load('@Url.Action("TaskSearch", "Task")?name=' + name);
         });
     });
 </script>

@@ -6,6 +6,6 @@ namespace TaskManager.DAL.Entities
 {
     public class BaseEntity
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
     }
 }
