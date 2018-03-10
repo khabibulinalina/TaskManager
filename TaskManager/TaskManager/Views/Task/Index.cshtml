@@ -9,11 +9,9 @@
 <h2>Текущие задачи</h2>
 
 <div class="content">
-    <a class="task-new" href="~/Task/Create">Cоздать карточку</a>
+    <a class="task-new" href="/Task/Create">Cоздать карточку</a>
     <div class="task-container">
-        <div class="filter">
-            @*@Html.DropDownListFor(m => m.TaskDTO.Priority, Html.GetEnumSelectList(typeof(PriorityDTO)))*@
-        </div>
+        
 
         @foreach (TaskViewModel b in Model)
         {

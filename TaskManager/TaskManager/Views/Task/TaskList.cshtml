@@ -7,28 +7,31 @@
 
 @model TaskManager.BLL.DTO.FilterViewModel
 
-<div class="col-md-12">
-    <form method="get" asp-action="Filter" asp-controller="Task">
-         @Html.DropDownListFor(m => m.CurrentFilter, Html.GetEnumSelectList(typeof(Filter)))
-        <input type="submit" value="Фильтр" class="btn btn-default" />
+<div class="col-md-12 filter">
+    <form method="get" asp-action="Filter" asp-controller="Task",  new { id = "demoForm", name = "demoForm", class="filter" }>
+        @Html.DropDownListFor(m => m.CurrentFilter, Html.GetEnumSelectList(typeof(Filter)),
+                 new { onchange = "Selectedfilter()" })
+
     </form>
 </div>
+
+
 
 <div class="col-md-6">
     <h4>Список карточек</h4>
     <div class="task-list">
         @foreach (TaskDTO b in Model.Tasks)
         {
-             <a class="list" href="#" data-id="@b.Id"> <p>@b.Title</p> </a>
+            <a class="list" href="#" data-id="@b.Id"> <p>@b.Title</p> </a>
         }
     </div>
 </div>
 <div class="col-md-6">
     <div id="test"></div>
 </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
         $('.list').click(function (e) {
 
@@ -38,4 +41,10 @@
             $('#test').load('@Url.Action("PartialViewTaskList", "Task")?id=' + id);
         });
     });
-    </script>
+</script>
+<script type="text/javascript">
+    function Selectedfilter() {
+        
+        document.demoForm.submit();
+    }
+</script>

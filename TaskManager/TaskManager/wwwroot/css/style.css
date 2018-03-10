@@ -24,7 +24,7 @@ color: #111b8cab;
 }
 
 .body-content {
-min-height: 500px;
+min-height: 700px;
 }
 
 .container {
@@ -228,4 +228,17 @@ box-shadow: 0 0 4px 1px #9d9d9d;
 
 .details .col-md-9 .description {
 margin-top: 50px;
+}
+
+form.filter select {
+background: #52514e;
+padding: 6px 10px;
+border-radius: 5px;
+color: white;
+border: none !important;
+}
+
+form.filter select option {
+background: #fdfdfd;
+color: black;
 }
